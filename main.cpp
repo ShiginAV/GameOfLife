@@ -2,7 +2,6 @@
 
 int main()
 {
-	cout << sizeof(short) << " " << sizeof(bool);
 	RunGol gen;
 	gen.run();
 
