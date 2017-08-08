@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const int WIDTH{ 70 };
-const int HEIGHT{ 70 };
+const int WIDTH{ 100 };
+const int HEIGHT{ 100 };
 const char LIVING_CELL{ '*' };
 const char DEAD_CELL{ '0' };
 
