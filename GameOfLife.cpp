@@ -2,9 +2,11 @@
 
 GameOfLife::GameOfLife()
 {
+	shape_cell.setRadius(CELL_SIZE / 2);
+	shape_cell.setFillColor(sf::Color::Green);
+
 	srand(time(0));
-	for (int y = 0; y < HEIGHT; ++y)
-	{
+	for (int y = 0; y < HEIGHT; ++y)	
 		for (int x = 0; x < WIDTH; ++x)
 		{		
 			int num = rand() % 2;
@@ -12,8 +14,7 @@ GameOfLife::GameOfLife()
 			if (num) cell = LIVING_CELL;
 			//generation[y][x] = cell;	
 			*(*(generation + y) + x) = cell;
-		}
-	}
+		}	
 }
 
 //поиск количества соседей
@@ -47,8 +48,7 @@ void GameOfLife::copy_arrays()
 //появление или уничтожение клетки
 void GameOfLife::is_dead_or_alive()
 {
-	for (int y = 0; y < HEIGHT; ++y)
-	{
+	for (int y = 0; y < HEIGHT; ++y)	
 		for (int x = 0; x < WIDTH; ++x)
 		{			
 			count = count_neighbors(y, x);
@@ -57,21 +57,21 @@ void GameOfLife::is_dead_or_alive()
 			if (count == 3) *(*(nextGeneration + y) + x) = LIVING_CELL;
 			if (count > 3 || count < 2) *(*(nextGeneration + y) + x) = DEAD_CELL;
 		}
-	}
+	
 	copy_arrays();
 	countGenerations++;
 }
 
 //вывести на экран
-void GameOfLife::paint(RenderWindow &win)
+void GameOfLife::paint(sf::RenderWindow &win)
 {
 	for (int y = 0; y < HEIGHT; ++y)	
 		for (int x = 0; x < WIDTH; ++x)		
 			//if (generation[y][x] == LIVING_CELL)
 			if (*(*(generation + y) + x) == LIVING_CELL)
 			{
-				Cell cell(x, y);
-				win.draw(cell.get_cellshape());
+				shape_cell.setPosition(x * CELL_SIZE, y * CELL_SIZE);
+				win.draw(shape_cell);
 			}
 }
 

@@ -2,12 +2,12 @@
 
 void RunGol::run()
 {
-	ContextSettings settings;
+	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 
-	String title{ "<GameOfLife>" };
-	RenderWindow window(VideoMode(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), title, Style::None | Style::Close, settings);
-	Clock clock;
+	sf::String title{ "<GameOfLife>" };
+	sf::RenderWindow window(sf::VideoMode(WIDTH * CELL_SIZE, HEIGHT * CELL_SIZE), title, sf::Style::None | sf::Style::Close, settings);
+	sf::Clock clock;
 	while (window.isOpen())
 	{
 		float time = clock.getElapsedTime().asSeconds();
@@ -15,10 +15,10 @@ void RunGol::run()
 		timer += time;
 
 		window.setTitle(title + " CountGenerations: " + std::to_string(generation.get_countGenerations()));
-		Event event;
+		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == Event::Closed)
+			if (event.type == sf::Event::Closed)
 				window.close();		
 		}
 
